@@ -1,0 +1,37 @@
+{
+  "name": "my-desktop-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "// --- DEVELOPMENT COMMANDS ---": "",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\" \"npm run dev:electron\"",
+    "dev:backend": "cd backend && go run main.go",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:electron": "cd frontend && npm run electron",
+    "// --- BUILD COMMANDS (Internal) ---": "",
+    "build:backend": "cd backend && go build -ldflags \"-s -w -H=windowsgui\" -o backend.exe main.go",
+    "build:frontend": "cd frontend && npm install && npm run build",
+    "build:electron": "cd frontend && npm run dist",
+    "// --- 🚀 THE ONE COMMAND TO RULE THEM ALL ---": "",
+    "dist": "npm run build:backend && npm run build:frontend && npm run build:electron"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "electron": "^39.2.4",
+    "electron-builder": "^26.0.12",
+    "wait-on": "^9.0.3"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "axios": "^1.13.2",
+    "lucide-react": "^0.555.0",
+    "react-hook-form": "^7.67.0",
+    "zod": "^4.1.13",
+    "zustand": "^5.0.8"
+  }
+}
